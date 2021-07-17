@@ -23,10 +23,10 @@ while rval:
     cv2.imshow("camera cinza", gray)
     
     
-    detector = cv2.CascadeClassifier("D:/Dados/frontalFace.xml")
-    #detector = cv2.CascadeClassifier("D:/Dados/smile.xml")
+    detector = cv2.CascadeClassifier('frontalFace.xml')
     
     rects = detector.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=10, minSize=(75,75))
+
     if rects != ():
       cont =+ 1
       for (i, (x, y, w, h)) in enumerate(rects):
