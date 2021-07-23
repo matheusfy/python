@@ -1,0 +1,11 @@
+Diversos/
+venv/
+Fabric/
+Teste/
+Heranca/
+__pycache__/
+Lib/
+asgiref
+*.pyc
+site-packages/
+*.csv
