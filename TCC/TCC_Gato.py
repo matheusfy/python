@@ -8,12 +8,13 @@ Created on Sat Sep  5 01:11:53 2020
 
 import numpy as np
 import matplotlib.pyplot as plt
-aux = np.load("D:/Dados/objeto/objeto.npy")
+from numpy.core.fromnumeric import size
+aux = np.load("objeto/objeto.npy")
 reconhecidos = aux
 #reconhecidos[:] = reconhecidos[:][:,:,::-1]
 
-embedded_TSNE = np.load("D:/Dados/objeto/embedded.npy")
-rotulo = np.load("D:/Dados/objeto/label.npy")
+embedded_TSNE = np.load("objeto/embedded.npy")
+rotulo = np.load("objeto/label.npy")
 #teste = aux[0][:,:,::-1]
 plt.imshow(reconhecidos[0])
 #print(reconhecidos)
@@ -27,13 +28,11 @@ import numpy as np; np.random.seed(42)
 # Generate data x, y for scatter and an array of images.
 
 
-
-
 # create figure and plot scatter
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
-line, = ax.plot(embedded_TSNE[:,0], embedded_TSNE[:,1], ls="", marker="o")
+line, = ax.plot(embedded_TSNE[:,0], embedded_TSNE[:,1], ls="", marker="x",)
 
 
 # create the annotations box
@@ -78,7 +77,7 @@ plt.show()
 
 plt.figure()
  
-plt.scatter(embedded_TSNE[:,0], embedded_TSNE[:,1], marker = 'o', s = 2, c= rotulo[:])
+plt.scatter(embedded_TSNE[:,0], embedded_TSNE[:,1], marker = 'o', size= 0.5, s = 2, c= rotulo[:])
 
 plt.show()
 
