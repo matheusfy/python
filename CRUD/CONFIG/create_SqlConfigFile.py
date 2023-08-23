@@ -7,7 +7,7 @@ config.set('postgresql', 'host'    , 'localhost')
 config.set('postgresql', 'user'    , 'postgres')
 config.set('postgresql', 'port'    , '5432')
 config.set('postgresql', 'password', 'nkrevg32')
-config.set('postgresql', 'db'      , 'contato')
+config.set('postgresql', 'db'      , 'cadastro')
 
 config.add_section('user_info')
 config.set('user_info', 'admin'   , 'postgres')
