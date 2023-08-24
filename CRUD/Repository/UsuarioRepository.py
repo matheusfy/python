@@ -16,8 +16,15 @@ class UsuarioRepository:
             print(error)
         return lstUsers
     
-    def add_user(self, user):
-        pass
+    def add_user(self, user) -> bool:
+        with DBConnectionHandler() as db:
+            try:
+                db.session.add(user)
+                db.session.commit()
+            except (Exception) as error:
+                print("Erro ao tentar inserir usuario: " + error)
+                return False
+        return True
     
     def add_users(self, lstUsers):
         pass
