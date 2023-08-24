@@ -14,12 +14,19 @@ class App():
         return False
 
 
-if __name__ == "__main__":
-    app = App()
+@app.route('/get_allusers', methods=['GET'])
+def Get_AllUsers():
     
+    lst_users = []
+    repo_User = UsuarioRepository()
+    for user in repo_User.get_users():
+      lst_users.append(user._as_dict()) 
     try:
-        if app.db_connection.connect():
-            print("conexao criada")
-        
-    except(ConnectionError) as error:
-        print("Falha em se conectar no banco", error)
+        return json.dumps(lst_users)
+    except (Exception) as error:
+        print("erro json: " + error)
+        return []
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

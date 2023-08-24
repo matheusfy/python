@@ -4,23 +4,26 @@ from Utils.Constants import DATA_BASE_URL
 from Entities.Usuario import Usuario
 from sqlalchemy.orm import sessionmaker
 
-# cria engine
-engine = create_engine(DATA_BASE_URL)
+class DBConnectionHandler:
 
-# cria sessão -> Sessao a partir da engine conectado com o banco
-Session = sessionmaker(bind=engine)
-session = Session()
+    def __init__(self) -> None:
+        self.__engine = self.__create_database_engine()
+        self.session  = None
+    
+    def __create_database_engine(self):
+        return create_engine(DATA_BASE_URL)
+        
+    def __enter__(self):
+        session = sessionmaker(bind=self.__engine)
+        self.session = session()
+        return self
 
-user1 = Usuario(
-    nome = "matheus12",
-    idade = 10,
-    endereco = "123",
-    senha = "123",
-    cpf = "123"
-)
+    def __exit__(self, exec_type, exec_val, exec_tb):
+        self.session.close()
 
-try:
-    for usuario in session.query(Usuario):
-      print(usuario)
-except (ConnectionAbortedError) as error:
-    print("conexao com banco abortado: "+ error)
+
+# try:
+#     for usuario in session.query(Usuario):
+#       print(usuario)
+# except (ConnectionAbortedError) as error:
+#     print("conexao com banco abortado: "+ error)
